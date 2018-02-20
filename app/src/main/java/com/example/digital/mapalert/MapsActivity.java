@@ -1,16 +1,24 @@
 package com.example.digital.mapalert;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -24,25 +32,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        GoogleMap map;
+
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        
+        Polygon polygon = mMap.addPolygon(new PolygonOptions()
+                .add(new LatLng(-34, 151), new LatLng(-34, 156), new LatLng(-31, 156), new LatLng(-31, 151),new LatLng(-34, 151))
+                        .strokeColor(Color.rgb(125, 0, 25))
+                        .strokeWidth(5)
+                        .fillColor(Color.argb(20, 255, 0, 50)));
+
+
+        /*PolylineOptions rectOptions = new PolylineOptions()
+                .add(new LatLng(37.35, -122.0))
+                .add(new LatLng(37.45, -122.0))
+                .add(new LatLng(37.45, -122.2))
+                .add(new LatLng(37.35, -122.2))
+                .add(new LatLng(37.35, -122.0));
+
+        Polyline polyline = mMap.addPolyline(rectOptions);*/
+
+
+
     }
 }
