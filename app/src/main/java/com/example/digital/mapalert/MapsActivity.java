@@ -50,14 +50,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         .fillColor(Color.argb(20, 255, 0, 50)));
 
 
-        /*PolylineOptions rectOptions = new PolylineOptions()
-                .add(new LatLng(37.35, -122.0))
-                .add(new LatLng(37.45, -122.0))
-                .add(new LatLng(37.45, -122.2))
-                .add(new LatLng(37.35, -122.2))
-                .add(new LatLng(37.35, -122.0));
-
-        Polyline polyline = mMap.addPolyline(rectOptions);*/
 
 
 
